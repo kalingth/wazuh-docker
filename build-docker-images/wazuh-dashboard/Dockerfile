@@ -15,6 +15,9 @@ RUN mkdir -p $INSTALL_DIR
 # Download and extract Wazuh dashboard base
 COPY config/dl_base.sh .
 RUN bash dl_base.sh
+RUN rm -rf $INSTALL_DIR/node
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash
+RUN apt install -y nodejs
 
 # Generate certificates
 COPY config/config.sh .
